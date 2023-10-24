@@ -7,11 +7,17 @@ import {IFieldAttrs} from '../../../lib/formUtils';
 import {useAppSelector} from '../../../hooks/redux';
 import {IAddressSubForm, IShippingFormValues} from '../../../types/shippingForm';
 import {useTranslation} from 'react-i18next';
+import {Autocomplete} from '@mui/material';
 
 export default function AddressFieldset({countries, showPhone, keyPrefix}: IProps) {
 	const {settings} = useAppSelector(state => state.app);
 	const formikProps = useFormikContext<IShippingFormValues>();
 	const {t} = useTranslation();
+
+	const top100Films = [
+		{label: 'United States', value: 200},
+		{label: 'Canada',value: 201},
+		{label: 'Other', value: 203}];
 
 	return (
 		<Grid container spacing={2}>
@@ -20,6 +26,7 @@ export default function AddressFieldset({countries, showPhone, keyPrefix}: IProp
 									 variant={'standard'}
 									 required={settings!.customerNameRequired.includes(TCheckoutCustomerName.first)}
 									 fullWidth
+									 defaultValue=""
 									 {...addressFieldAttrs(keyPrefix, 'first_name', formikProps)}
 				/>
 			</Grid>
@@ -28,6 +35,7 @@ export default function AddressFieldset({countries, showPhone, keyPrefix}: IProp
 									 variant={'standard'}
 									 required={true}
 									 fullWidth
+									 defaultValue=""
 									 {...addressFieldAttrs(keyPrefix, 'last_name', formikProps)}
 				/>
 			</Grid>
@@ -38,6 +46,7 @@ export default function AddressFieldset({countries, showPhone, keyPrefix}: IProp
 									 variant={'standard'}
 									 required={settings!.companyName === TCheckoutFieldStatus.required}
 									 fullWidth
+									 defaultValue=""
 									 {...addressFieldAttrs(keyPrefix, 'company', formikProps)}
 				/>
 			</Grid>
@@ -48,6 +57,7 @@ export default function AddressFieldset({countries, showPhone, keyPrefix}: IProp
 									 variant={'standard'}
 									 required={true}
 									 fullWidth
+									 defaultValue=""
 									 {...addressFieldAttrs(keyPrefix, 'address_line_1', formikProps)}
 				/>
 			</Grid>
@@ -58,6 +68,7 @@ export default function AddressFieldset({countries, showPhone, keyPrefix}: IProp
 									 variant={'standard'}
 									 required={settings!.addressLine2 === TCheckoutFieldStatus.required}
 									 fullWidth
+									 defaultValue=""
 									 {...addressFieldAttrs(keyPrefix, 'address_line_2', formikProps)}
 				/>
 			</Grid>
@@ -68,6 +79,7 @@ export default function AddressFieldset({countries, showPhone, keyPrefix}: IProp
 									 variant={'standard'}
 									 required={true}
 									 fullWidth
+									 defaultValue=""
 									 {...addressFieldAttrs(keyPrefix, 'zip', formikProps)}
 				/>
 			</Grid>
@@ -76,6 +88,7 @@ export default function AddressFieldset({countries, showPhone, keyPrefix}: IProp
 									 variant={'standard'}
 									 required={true}
 									 fullWidth
+									 defaultValue=""
 									 {...addressFieldAttrs(keyPrefix, 'city', formikProps)}
 				/>
 			</Grid>
@@ -84,30 +97,49 @@ export default function AddressFieldset({countries, showPhone, keyPrefix}: IProp
 				<TextField label={t('addresses.state')}
 									 variant={'standard'}
 									 fullWidth
+									 defaultValue=""
 									 {...addressFieldAttrs(keyPrefix, 'state', formikProps)}
 				/>
 			</Grid>
-			<Grid item xs={6}>
-				<TextField label={t('addresses.country')}
-									 variant={'standard'}
-									 required={true}
-									 fullWidth
-									 select
-									 SelectProps={{native: true}}
-									 {...addressFieldAttrs(keyPrefix, 'country_id', formikProps)}
-				>
-					<option>Select country</option>
-					{countries.map(({country_id, title}) =>
-						<option key={country_id} value={country_id}>{title}</option>
-					)}
-				</TextField>
-			</Grid>
+			{/*<Grid item xs={6}>*/}
+			{/*	<TextField label={t('addresses.country')}*/}
+			{/*						 variant={'standard'}*/}
+			{/*						 required={true}*/}
+			{/*						 fullWidth*/}
+			{/*						 select*/}
+			{/*						 SelectProps={{native: true}}*/}
+			{/*						 {...addressFieldAttrs(keyPrefix, 'country_id', formikProps)}*/}
+			{/*	>*/}
+			{/*		<option>Select country</option>*/}
+			{/*		{countries.map(({country_id, title}) =>*/}
+			{/*			<option key={country_id} value={country_id}>{title}</option>*/}
+			{/*		)}*/}
+			{/*	</TextField>*/}
+			{/*</Grid>*/}
+
+			{/*<Grid item xs={6}>*/}
+			{/*	<Autocomplete*/}
+			{/*		disablePortal*/}
+			{/*		id="addresses.country"*/}
+			{/*		options={top100Films}*/}
+			{/*		sx={{width: 300, paddingRight: '24px'}}*/}
+			{/*		renderInput={(params) =>*/}
+			{/*			// @ts-ignore*/}
+			{/*			<TextField*/}
+			{/*				variant="standard"*/}
+			{/*				required={true}*/}
+			{/*				{...params}*/}
+			{/*				label={t('addresses.country')}*/}
+			{/*			/>}*/}
+			{/*	/>*/}
+			{/*</Grid>*/}
 
 			{showPhone &&
-			<Grid item xs={12}>
+			<Grid item xs={6}>
 				<TextField label={t('addresses.phone')}
 									 variant={'standard'}
 									 fullWidth
+									 defaultValue=""
 									 {...addressFieldAttrs(keyPrefix, 'phone', formikProps)}
 				/>
 			</Grid>
@@ -143,6 +175,7 @@ export function addressFieldAttrs(
 ): IFieldAttrs {
 	const {errors, values, handleChange} = formikProps;
 	const addressValues = values[keyPrefix] as IAddressSubForm;
+	addressValues.country_id = '236';
 
 	const fullName = `${keyPrefix}.${field}`;
 	let error = false;

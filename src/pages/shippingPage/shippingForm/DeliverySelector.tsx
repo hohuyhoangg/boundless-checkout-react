@@ -11,7 +11,7 @@ import {useTranslation} from 'react-i18next';
 
 export default function DeliverySelector({options}: IInPros) {
 	const formikProps = useFormikContext<IShippingFormValues>();
-
+	formikProps.values.delivery_id = 23;
 	return (
 		<Box mb={2}>
 			<FormControl component="fieldset" error={Boolean('delivery_id' in formikProps.errors)}>
@@ -19,6 +19,7 @@ export default function DeliverySelector({options}: IInPros) {
 					name='delivery_id'
 					onChange={formikProps.handleChange}
 					value={formikProps.values.delivery_id}
+					defaultValue={options.delivery[0].delivery_id}
 				>
 					{options.delivery.map(delivery => (
 						<React.Fragment key={delivery.delivery_id}>

@@ -14,7 +14,7 @@ export interface IAddressSubForm {
 	address_line_2?: string;
 	city: string;
 	state?: string;
-	country_id: number|string;
+	country_id?: number|string;
 	zip: string;
 	phone?: string;
 }

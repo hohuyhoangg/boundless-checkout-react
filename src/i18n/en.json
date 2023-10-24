@@ -34,7 +34,7 @@
 	},
 	"shippingForm": {
 		"pageTitle": "Checkout: Shipping",
-		"pageHeader": "Delivery method",
+		"pageHeader": "Delivery information",
 		"continueToPayment": "Continue to payment",
 		"freeDelivery": "Free"
 	},

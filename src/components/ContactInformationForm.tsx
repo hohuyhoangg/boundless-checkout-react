@@ -95,6 +95,7 @@ export function ContactFormView({setViewMode}: { setViewMode: (mode: TViewMode) 
 													 type={'email'}
 													 required={required}
 													 fullWidth
+													 defaultValue=""
 													 {...fieldAttrs<IContactInformationFormValues>('email', formikProps)}
 								/>
 								}

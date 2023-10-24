@@ -38,21 +38,21 @@ export default function AddressesFields({shippingPage}: {shippingPage: ICheckout
 							showPhone
 						/>
 					</Box>
-					<Box mb={2}>
-						<FormControlLabel
-							control={<Checkbox value={true} {...checkAttrs('billing_address_the_same', formikProps)} />}
-							label={t('addresses.billingTheSame')}
-						/>
-					</Box>
-					{!formikProps.values.billing_address_the_same &&
-						<Box className='bdl-shipping-form__address-form' mb={2}>
-							<Typography variant="h6">{t('addresses.billingAddress')}</Typography>
-							<AddressFieldset
-								countries={shippingPage.options.country}
-								keyPrefix={'billing_address'}
-							/>
-						</Box>
-					}
+					{/*<Box mb={2}>*/}
+					{/*	<FormControlLabel*/}
+					{/*		control={<Checkbox value={true} {...checkAttrs('billing_address_the_same', formikProps)} />}*/}
+					{/*		label={t('addresses.billingTheSame')}*/}
+					{/*	/>*/}
+					{/*</Box>*/}
+					{/*{!formikProps.values.billing_address_the_same &&*/}
+					{/*	<Box className='bdl-shipping-form__address-form' mb={2}>*/}
+					{/*		<Typography variant="h6">{t('addresses.billingAddress')}</Typography>*/}
+					{/*		<AddressFieldset*/}
+					{/*			countries={shippingPage.options.country}*/}
+					{/*			keyPrefix={'billing_address'}*/}
+					{/*		/>*/}
+					{/*	</Box>*/}
+					{/*}*/}
 				</>
 			}
 		</>

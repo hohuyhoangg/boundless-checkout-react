@@ -62,6 +62,7 @@ const PaymentMethods = ({
 													paymentMethods
 												}: { formikProps: FormikProps<IPaymentMethodFormValues>, paymentMethods: IPaymentMethod[] }) => {
 	const {t} = useTranslation();
+	formikProps.values.payment_method_id = 1;
 
 	return (
 		<Box mb={2}>
@@ -70,6 +71,7 @@ const PaymentMethods = ({
 			>
 				<RadioGroup name="payment_method_id"
 										onChange={formikProps.handleChange}
+										defaultValue={paymentMethods[0].payment_method_id}
 				>
 					{paymentMethods.map(({payment_method_id, title, gateway_alias}) => {
 						switch (gateway_alias) {
